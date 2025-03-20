@@ -1,0 +1,8 @@
+docker pull python:3.8-buster
+docker build -t api:v1.0 .
+docker run --rm --name student-list -dp 5000:5000 -v ./student_age.json:/data/student_age.json api:v1.0
+curl -u toto:python -X GET http://<host IP>:<API exposed port>/pozos/api/v1.0/get_student_ages
+docker stop student-list
+docker pull php:apache
+$url = 'http://<api_ip_or_name:port>/pozos/api/v1.0/get_student_ages';
+docker compose -f docker-compose.yml up -d
