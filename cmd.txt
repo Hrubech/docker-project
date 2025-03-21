@@ -6,3 +6,8 @@ docker stop student-list
 docker pull php:apache
 $url = 'http://<api_ip_or_name:port>/pozos/api/v1.0/get_student_ages';
 docker compose -f docker-compose.yml up -d
+docker compose -f docker-compose-registry.yml up -d
+docker logout
+docker login -u pozos -p password http://localhost:8080
+docker tag student-api:v1.0 localhost:8080/student-api:v1.0
+docker push localhost:8080/student-api:v1.0
